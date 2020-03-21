@@ -8,7 +8,7 @@
     "start": "node index.js"
   },
   "author": "Lucas Figueiredo, Matheus Sanchez, Rafael Farias",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
