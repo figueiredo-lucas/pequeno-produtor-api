@@ -20,7 +20,7 @@ const options = {
 
 require('express-swagger-generator')(app)(options);
 
-mongoose.connect('mongodb://127.0.0.1/pequeno-produto', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://127.0.0.1/pequeno-produto', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -82,7 +82,7 @@ app.post('/advertiser', (req, res) => {
  * @returns {string} 400 - "Algum erro misterioso"
  */
 app.patch('/advertiser/:id', (req, res) => {
-    Advertiser.findByIdAndUpdate(req.params.id, req.body, (err, advertiser) => {
+    Advertiser.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, advertiser) => {
         if (err) return res.status(400).send(err);
         if (!advertiser) return res.status(404).send('Anunciante não encontrado');
         res.send(advertiser);
